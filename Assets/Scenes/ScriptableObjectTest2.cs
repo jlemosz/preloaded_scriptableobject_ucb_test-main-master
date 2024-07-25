@@ -1,73 +1,59 @@
 using System.Linq;
-
+using UnityEngine;
 #if UNITY_EDITOR
-
 using UnityEditor;
-
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 #endif
 
-using UnityEngine;
-
 namespace Scenes
-
 {
-
     [DefaultExecutionOrder(-10000)]
-
     public class ScriptableObjectTest2 : ScriptableObject
-
+#if UNITY_EDITOR
+        , IPreprocessBuildWithReport
+#endif
     {
-
-        [SerializeField] public string testValue = "Default Value";
-
-        void OnEnable()
-
-        {
-
-            instance = this;
-
-        }
+        const string path = "Assets/" + nameof(ScriptableObjectTest2) + ".asset";
 
         public static ScriptableObjectTest2 instance { get; private set; }
+        [SerializeField] public string testValue = "Default Value";
 
 #if UNITY_EDITOR
+        public int callbackOrder { get { return 0; } }
 
-// Pre-export method to be called by Unity Cloud Build
-
-        public static void PreExport()
-
+        public void OnPreprocessBuild(BuildReport report)
         {
+            CheckCreated();
+        }
 
-            const string path = "Assets/" + nameof(ScriptableObjectTest2) + ".asset";
-
+        static void CheckCreated()
+        {
             var settings = AssetDatabase.LoadAssetAtPath<ScriptableObjectTest2>(path);
-
             if (settings == null)
-
             {
-
                 settings = CreateInstance<ScriptableObjectTest2>();
-
                 AssetDatabase.CreateAsset(settings, path);
-
                 AssetDatabase.SaveAssets();
-
             }
 
             var preloadedAssets = PlayerSettings.GetPreloadedAssets();
-
             if (!preloadedAssets.Contains(settings))
-
             {
-
                 PlayerSettings.SetPreloadedAssets(preloadedAssets.Where(i => i != null).Append(settings).ToArray());
-
             }
-
         }
 
+        [InitializeOnLoadMethod]
+        static void InitializeOnLoad()
+        {
+            CheckCreated();
+        }
 #endif
 
+        void OnEnable()
+        {
+            instance = this;
+        }
     }
-
 }
