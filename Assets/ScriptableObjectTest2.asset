@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b335463eed95f49298de16720509fc1e, type: 3}
   m_Name: ScriptableObjectTest2
   m_EditorClassIdentifier: 
-  testValue: Default Value
+  testValue: Test for Israel

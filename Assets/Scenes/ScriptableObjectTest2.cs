@@ -43,12 +43,6 @@ namespace Scenes
                 PlayerSettings.SetPreloadedAssets(preloadedAssets.Where(i => i != null).Append(settings).ToArray());
             }
         }
-
-        [InitializeOnLoadMethod]
-        static void InitializeOnLoad()
-        {
-            CheckCreated();
-        }
 #endif
 
         void OnEnable()
