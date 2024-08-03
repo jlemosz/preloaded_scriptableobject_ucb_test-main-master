@@ -12,7 +12,7 @@ namespace Scenes
 
         void OnEnable()
         {
-            linkedTMP_Text.text = ScriptableObjectTest2.instance.testValue;
+            linkedTMP_Text.text = ScriptableObjectTest3.instance.testValue;
         }
     }
 }
