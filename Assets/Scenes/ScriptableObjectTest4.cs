@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScriptableObjectTest4", menuName = "ScriptableObjects/ScriptableObjectTest4")]
 public class ScriptableObjectTest4 : ScriptableObject
 {
-    public static ScriptableObjectTest4 instance;
+    private static ScriptableObjectTest4 instance;
     public static ScriptableObjectTest4 Instance
     {
         get
