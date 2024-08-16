@@ -10,7 +10,7 @@ public class ScriptableObjectTest4 : ScriptableObject
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<ScriptableObjectTest4>();
+                //instance = FindObjectOfType<ScriptableObjectTest4>();
                 if (instance == null)
                 {
                     Debug.LogError("ScriptableObjectTest not found. Ensure it's added to Preloaded Assets in Player Settings.");
