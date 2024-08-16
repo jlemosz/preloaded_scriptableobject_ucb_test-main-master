@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(-10000)]
 [CreateAssetMenu(fileName = "ScriptableObjectTest4", menuName = "ScriptableObjects/ScriptableObjectTest4")]
 public class ScriptableObjectTest4 : ScriptableObject
 {
